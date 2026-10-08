@@ -1,0 +1,27 @@
+== list
+LAB/cc/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-cgg2LPqtqi-h/memory/tabs.md
+== approve
+Use tabs.
+
+File as a learning? [y]es / [n]o, do not ask again / [q]uit: filed in data/learnings.md
+== learnings
+# Learnings
+
+<!-- memory tiers: see the stow skill -->
+
+## Prefers tabs
+
+Use tabs.
+
+Source: Claude auto memory LAB/cc/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-cgg2LPqtqi-h/memory/tabs.md (type: user), approved 2026-10-08. <!--a:2026-10-08-->
+claude-memory-reviewed.tsv
+learnings.md
+tabs.md
+== rerun
+no unreviewed Claude memory notes in LAB/cc/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-cgg2LPqtqi-h/memory
+== project clone
+error: FM_HOME is not a primary home: LAB/clone
+rc=1
+== task pane
+error: refusing to run in a task pane: a worker's memory is not the captain's
+rc=1

@@ -19,7 +19,11 @@
 # FM_HOME, which must be set explicitly so a copy run from a task worktree can never
 # read a worker's store. Only that one store is read: stores of project clones and
 # task worktrees are written by workers, whose "user" is Firstmate rather than the
-# captain, so they are never listed. A task pane (FM_TASK_ID set) is refused.
+# captain, so they are never listed. A task pane (FM_TASK_ID set) is refused, and so is an FM_HOME that
+# fm_primary_root_matches (bin/fm-primary-scope-lib.sh) does not accept as a primary home.
+# Unverified limitation: whether Claude Code shares one store between linked worktrees
+# of the same repository is not confirmed, so a worker in a worktree of the firstmate
+# repo itself might write into this store; nothing here detects that.
 # --memory-dir names the directory directly, for a store moved with Claude's
 # autoMemoryDirectory setting. Very long paths are hashed by Claude Code and are
 # not derived here; use --memory-dir for those. MEMORY.md, symlinks and non-.md
@@ -51,6 +55,9 @@ done
 [ -z "${FM_TASK_ID:-}" ] || die "refusing to run in a task pane: a worker's memory is not the captain's"
 [ -n "${FM_HOME:-}" ] || die "FM_HOME must be set to the primary home explicitly"
 [ -d "$FM_HOME" ] || die "FM_HOME is not a directory: $FM_HOME"
+# shellcheck source=bin/fm-primary-scope-lib.sh
+. "$(dirname "${BASH_SOURCE[0]}")/fm-primary-scope-lib.sh"
+fm_primary_root_matches "$FM_HOME" || die "FM_HOME is not a primary home: $FM_HOME"
 
 if [ -z "$MEMORY_DIR" ]; then
   home_real=$(cd "$FM_HOME" && pwd -P) || die "cannot resolve FM_HOME"

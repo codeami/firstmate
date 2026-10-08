@@ -4,7 +4,7 @@
 # Covers store selection (only the home's own store is read, never a worktree's
 # or clone's), the approve/skip/quit decisions, the learnings entry shape, quiet
 # reruns through the reviewed record, re-asking an edited note, and the refusals
-# (no explicit FM_HOME, task pane). All fixtures live under a temp root: no real
+# (no explicit FM_HOME, task pane, non-primary home). All fixtures live under a temp root: no real
 # home, no network, no model.
 set -euo pipefail
 
@@ -17,7 +17,9 @@ BIN="$ROOT/bin/fm-memory-review.sh"
 # make_world <name>: a home plus a fake Claude config dir holding the home's store.
 make_world() {
   local w="$TMP_ROOT/$1"
-  mkdir -p "$w/home/data" "$w/claude"
+  mkdir -p "$w/home/data" "$w/home/bin" "$w/claude"
+  : >"$w/home/AGENTS.md"
+  git init -q "$w/home"
   local real project store
   real=$(cd "$w/home" && pwd -P)
   project=$(printf '%s' "$real" | sed 's/[^A-Za-z0-9]/-/g')
@@ -149,7 +151,7 @@ pass "only the home's own store is read unless a directory is named"
 # --- missing directory is a quiet no-op ---------------------------------------
 
 w="$TMP_ROOT/nostore"
-mkdir -p "$w/home/data"
+mkdir -p "$w/home/data" "$w/home/bin"; : >"$w/home/AGENTS.md"; git init -q "$w/home"
 out=$(FM_HOME="$w/home" CLAUDE_CONFIG_DIR="$w/claude" "$BIN" 2>&1) || fail "missing dir should exit 0"
 assert_contains "$out" "nothing to review" "missing store reported plainly"
 pass "a missing Claude memory directory is a no-op"
@@ -168,4 +170,15 @@ assert_contains "$out" "task pane" "a worker pane is refused"
 code=0
 out=$(FM_HOME="$w/home" "$BIN" --bogus 2>&1 </dev/null) || code=$?
 expect_code 1 "$code" "bad argument"
-pass "missing FM_HOME, a task pane and a bad argument are refused"
+mkdir -p "$w/clone/bin"
+git init -q "$w/clone"
+code=0
+out=$(FM_HOME="$w/clone" CLAUDE_CONFIG_DIR="$w/claude" "$BIN" 2>&1 </dev/null) || code=$?
+expect_code 1 "$code" "project clone"
+assert_contains "$out" "not a primary home" "a project clone is refused"
+mkdir -p "$w/plain"
+code=0
+out=$(FM_HOME="$w/plain" CLAUDE_CONFIG_DIR="$w/claude" "$BIN" 2>&1 </dev/null) || code=$?
+expect_code 1 "$code" "non-home dir"
+assert_contains "$out" "not a primary home" "a non-home directory is refused"
+pass "missing FM_HOME, a task pane, a bad argument and non-primary homes are refused"

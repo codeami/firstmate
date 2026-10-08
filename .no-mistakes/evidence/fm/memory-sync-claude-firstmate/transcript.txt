@@ -1,0 +1,49 @@
+## list
+/var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory/a.md
+/var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory/b.md
+## review y,n
+
+--- 1/2: /var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory/a.md
+type: feedback
+description: d
+
+
+Likes short answers.
+
+File as a learning? [y]es / [n]o, do not ask again / [q]uit: filed in data/learnings.md
+
+--- 2/2: /var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory/b.md
+type: project
+
+
+Second.
+
+File as a learning? [y]es / [n]o, do not ask again / [q]uit: skipped
+## learnings
+# Learnings
+
+<!-- memory tiers: see the stow skill -->
+
+## short
+
+
+Likes short answers.
+
+Source: Claude auto memory /var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory/a.md (type: feedback), approved 2026-10-08. <!--a:2026-10-08-->
+## record
+9ce8eafd17a06291dcee96f3c9bca0b22c4b1c85b1df30f61ab0c965b7dee6a0	filed	2026-10-08	/var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory/a.md
+2a3c73c47afa8b85246649e4a9652e41f1a14385d2fe4302baa26da6fd104099	skipped	2026-10-08	/var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory/b.md
+## rerun
+no unreviewed Claude memory notes in /var/folders/dv/7nh_g3f94pj6tlbmdm87jf080000gn/T/tmp.DX7rKoPGj2/claude/projects/-private-var-folders-dv-7nh-g3f94pj6tlbmdm87jf080000gn-T-tmp-DX7rKoPGj2-home/memory
+## pinned unchanged
+PIN2
+captain-shared.md
+captain.md
+claude-memory-reviewed.tsv
+learnings.md
+## task pane
+error: refusing to run in a task pane: a worker's memory is not the captain's
+rc=1
+## no FM_HOME
+error: FM_HOME must be set to the primary home explicitly
+rc=1

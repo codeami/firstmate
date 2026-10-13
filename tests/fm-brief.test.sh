@@ -972,6 +972,21 @@ test_scout_and_secondmate_load_decision_hold_policy() {
 
 # A scout brief offers the Lavish review loop for every compatible board version,
 # including older builds that use the legacy reply path.
+test_scout_brief_carries_plain_check_line_and_others_do_not() {
+  local home="$TMP_ROOT/pc-home" kind brief
+  mkdir -p "$home/data"
+  FM_HOME="$home" "$ROOT/bin/fm-brief.sh" pc-scout alpha --scout >/dev/null || fail "scout scaffold failed"
+  FM_HOME="$home" "$ROOT/bin/fm-brief.sh" pc-ship alpha --mode direct-PR >/dev/null || fail "ship scaffold failed"
+  FM_HOME="$home" FM_SECONDMATE_CHARTER='x' "$ROOT/bin/fm-brief.sh" pc-mate --secondmate --no-projects >/dev/null || fail "secondmate scaffold failed"
+  assert_grep "run \`plain-check\` on your report" "$home/data/pc-scout/brief.md" "scout brief lost the plain-check line"
+  assert_grep 'If the tool is absent, skip this step.' "$home/data/pc-scout/brief.md" "scout brief lost the absent-tool skip"
+  for kind in ship mate; do
+    brief="$home/data/pc-$kind/brief.md"
+    assert_no_grep 'plain-check' "$brief" "$kind brief received the scout-only plain-check line"
+  done
+  pass "fm-brief.sh: only the scout brief carries the plain-check line"
+}
+
 test_scout_lavish_line_follows_presentation_floor() {
   local base label version expect case_dir fakebin brief n=0
   local hosting='use the lavish-axi rule'
@@ -1490,6 +1505,7 @@ test_pause_verb_override_renders_all_brief_scaffolds
 test_ship_and_scout_teach_validation_round_pause
 test_scout_and_secondmate_load_decision_hold_policy
 test_scout_and_secondmate_scaffold
+test_scout_brief_carries_plain_check_line_and_others_do_not
 test_scout_lavish_line_follows_presentation_floor
 test_workers_wait_without_spending_turns
 test_wait_no_turns_absent_keeps_the_previous_brief

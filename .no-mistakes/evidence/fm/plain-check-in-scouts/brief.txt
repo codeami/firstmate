@@ -1,0 +1,4 @@
+== scout brief
+82:Before you append `done`, run `plain-check` on your report if the tool is on PATH or at `~/context/bin/plain-check`; fix what it reports, or wrap non-prose parts in `<!-- ste:off -->` / `<!-- ste:on -->` markers, and name the result in your `done` line. If the tool is absent, skip this step.
+== ship brief count:
+0

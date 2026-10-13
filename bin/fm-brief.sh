@@ -641,6 +641,7 @@ Write your findings to \`$DATA/$ID/report.md\`.
 The report must stand alone: what you did, what you found, the evidence (commands run, output, file:line references), and what you recommend.
 $LAVISH_LINE
 Before reporting done, read and follow \`$FM_ROOT/.agents/skills/captain-hold-lifecycle/SKILL.md\` and pass its shared completion gate for the report and any visual review.
+Before you append \`done\`, run \`plain-check\` on your report if the tool is on PATH or at \`~/context/bin/plain-check\`; fix what it reports, or wrap non-prose parts in \`<!-- ste:off -->\` / \`<!-- ste:on -->\` markers, and name the result in your \`done\` line. If the tool is absent, skip this step.
 When the report is complete, append \`done [at=<epoch>]: {one-line conclusion}\` to the status file and stop.
 If your findings reveal work that should ship (e.g. you reproduced a bug and the fix is clear), say so in the report; firstmate may promote this task in place, and you would then receive mode-specific ship instructions as a follow-up message.
 EOF

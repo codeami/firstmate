@@ -978,7 +978,7 @@ test_scout_brief_carries_plain_check_line_and_others_do_not() {
   FM_HOME="$home" "$ROOT/bin/fm-brief.sh" pc-scout alpha --scout >/dev/null || fail "scout scaffold failed"
   FM_HOME="$home" "$ROOT/bin/fm-brief.sh" pc-ship alpha --mode direct-PR >/dev/null || fail "ship scaffold failed"
   FM_HOME="$home" FM_SECONDMATE_CHARTER='x' "$ROOT/bin/fm-brief.sh" pc-mate --secondmate --no-projects >/dev/null || fail "secondmate scaffold failed"
-  assert_grep 'run `plain-check` on your report' "$home/data/pc-scout/brief.md" "scout brief lost the plain-check line"
+  assert_grep "run \`plain-check\` on your report" "$home/data/pc-scout/brief.md" "scout brief lost the plain-check line"
   assert_grep 'If the tool is absent, skip this step.' "$home/data/pc-scout/brief.md" "scout brief lost the absent-tool skip"
   for kind in ship mate; do
     brief="$home/data/pc-$kind/brief.md"
